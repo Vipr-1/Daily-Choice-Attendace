@@ -22,6 +22,7 @@ Here is an example of what the sheet may looklike once the script populates it w
 
 ### Code setup
 ***Any typos and mistakes here will cause the program to not work correctly or at all***
+
 Take the code.gs file and add it to a new Google Apps Script project. (Copy pasting into the default code.gs works) Find the line containing `const CLASS_LIST_SHEET_ID = PLACEHOLDER;` and change the `PLACEHOLDER` to the sheet ID of the first Google Sheets file you made. The ID is found in the URI of the webpage for editing the file. The URI looks something like this: https://docs.google.com/spreadsheets/d/<YOUR ID HERE>/edit?gid=0#gid=0 
 
 Next, right under your newly added ID you should see:
