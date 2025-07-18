@@ -13,11 +13,13 @@ While this script is intended for school use to sort students across classes int
 Set up a Google Sheets file with the following format. A Header on the first two rows, a side banner in the first column, the student's class in the second column, the students last name in the third, first name in the fourth, and finally a dropdown with the chosen teachers in the fifth. Each student get's his/her own row. Each class of students should have their own tab on the spread sheet named after their class.(This format is kinda flexable and can theroetically use any data, the important thing to remember is that the dropdown decides the destination tab on the second file for the other three columns)
 
 Here is what that may look like.
+
 ![Sample class list sheet](/markdownAssets/ClassSpreadsheetEX.png)
 
 Now set up another Google Sheets file with the top row as a header, recrate this header on as many tabs as you have choices for your dropdown and name them after your choices verbatim. **If there is a typo things will break.** 
 
 Here is an example of what the sheet may looklike once the script populates it with data.
+
 ![Sample Attendance list sheet](/markdownAssets/TeacherSpreadsheetEX.png)
 
 ### Code setup
