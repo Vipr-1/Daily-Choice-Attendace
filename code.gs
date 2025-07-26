@@ -36,11 +36,15 @@ const LIST_OF_TEACHER_TABS = [
 
 // --- MAIN FUNCTION TO RUN ---
 function run() {
-    //Only run if school is open
-    clearTeacherTabs();
-    if(!afterHours(checkDate())){
-        distributeChoices();
-    }
+  clearTeacherTabs();
+  //Only run if school is open
+  if(!afterHours(checkDate())){
+    distributeChoices();
+  }
+  else{
+    //sets choices on class sheet to default
+    resetChoices();
+  }
 }
 
 /**
@@ -212,7 +216,7 @@ function afterHours(currentDate){
  * Resets all ACE choices in class list tabs to "Not Selected".
  * Assumes choices are in the fifth column (Column E) starting from row 2.
  */
-function resetAceChoicesToNotSelected() {
+function resetChoices() {
     const sheetsOfClasses = SpreadsheetApp.openById(CLASS_LIST_SHEET_ID);
     const choiceColumn = 5; // Column E is the 5th column
     const firstChoiceRow = 3; // Choices start on the third row
