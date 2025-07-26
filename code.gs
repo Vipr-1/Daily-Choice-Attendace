@@ -36,11 +36,15 @@ const LIST_OF_TEACHER_TABS = [
 
 // --- MAIN FUNCTION TO RUN ---
 function run() {
-    //Only run if school is open
-    clearTeacherTabs();
-    if(!afterHours(checkDate())){
-        distributeChoices();
-    }
+  clearTeacherTabs();
+  //Only run if school is open
+  if(!afterHours(checkDate())){
+    distributeChoices();
+  }
+  else{
+    //sets choices on class sheet to default
+    resetChoices();
+  }
 }
 
 /**
@@ -206,5 +210,41 @@ function afterHours(currentDate){
         Logger.log('School is open.')
         return false;
     }
+}
+
+/**
+ * Resets all ACE choices in class list tabs to "Not Selected".
+ * Assumes choices are in the fifth column (Column E) starting from row 2.
+ */
+function resetChoices() {
+    const sheetsOfClasses = SpreadsheetApp.openById(CLASS_LIST_SHEET_ID);
+    const choiceColumn = 5; // Column E is the 5th column
+    const firstChoiceRow = 3; // Choices start on the third row
+
+    LIST_OF_CLASS_TABS.forEach(tabName => {
+        const classSheet = sheetsOfClasses.getSheetByName(tabName);
+        if (!classSheet) {
+            Logger.log(`ERROR: Class sheet "${tabName}" not found in CLASS_LIST_SHEET_ID: ${CLASS_LIST_SHEET_ID}. Skipping reset.`);
+            return;
+        }
+        Logger.log(`Resetting ACE choices in tab: ${tabName}`);
+
+        const lastRow = classSheet.getLastRow();
+
+        // Only proceed if there are rows to reset below the header
+        if (lastRow >= firstChoiceRow) {
+            const numRowsToReset = lastRow - firstChoiceRow + 1;
+            // Create a 2D array filled with "Not Selected" for the entire range
+            const valuesToSet = Array(numRowsToReset).fill(['Not Selected']);
+
+            // Get the range and set the values
+            const rangeToReset = classSheet.getRange(firstChoiceRow, choiceColumn, numRowsToReset, 1);
+            rangeToReset.setValues(valuesToSet);
+            Logger.log(`Set ${numRowsToReset} choices to "Not Selected" in "${tabName}", Column E.`);
+        } else {
+            Logger.log(`No choices to reset in "${tabName}" below row ${firstChoiceRow}.`);
+        }
+    });
+    Logger.log('All specified class list ACE choices have been reset to "Not Selected".');
 }
 
