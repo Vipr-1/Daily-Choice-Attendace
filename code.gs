@@ -215,7 +215,7 @@ function afterHours(currentDate){
 function resetAceChoicesToNotSelected() {
     const sheetsOfClasses = SpreadsheetApp.openById(CLASS_LIST_SHEET_ID);
     const choiceColumn = 5; // Column E is the 5th column
-    const firstChoiceRow = 2; // Choices start on the second row
+    const firstChoiceRow = 3; // Choices start on the third row
 
     LIST_OF_CLASS_TABS.forEach(tabName => {
         const classSheet = sheetsOfClasses.getSheetByName(tabName);
