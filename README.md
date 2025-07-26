@@ -54,7 +54,7 @@ Create a new trigger and tell it to execute the `run()` function on a time trigg
 ## Notes
 
 ### Time of Day Behaviour
-By default this program only updates the spreadsheet during the school day and keeps it clear when school is closed. To disable this functionality, go to the `run()` function in the code and remove the if statement so that the only contents of the function that remain are `clearTeacherTabs()` and `distriobuteChoices()` in that order.
+By default this program only updates the spreadsheet during the school day and keeps it clear when school is closed. It will also set all the choices to "Not Selected" in the first Google Sheets file when school is closed. To disable this functionality, go to the `run()` function in the code and remove the `if` statement and the `else` statement containing the function `resetChoices()` so that the only contents of the `run()` function that remain are `clearTeacherTabs()` and `distriobuteChoices()` in that order.
 
 If changing these paramteres is desired, find the `afterHours(currentDate)` function and adjust the if statements to the desired behaviour, there is a code comment with a hint regarding this.
 
